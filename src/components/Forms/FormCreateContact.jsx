@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { nanoid } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,7 +9,7 @@ import {
   ButtonElementStyle,
 } from 'components/Forms/FormCreateContact.styled';
 
-import { addContact } from 'redux/contactsSlice';
+import { addContact, fetchContacts } from 'redux/contactsSlice';
 
 const FormCreateContact = () => {
   const [name, setName] = useState('');
@@ -17,6 +17,12 @@ const FormCreateContact = () => {
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
   const { contacts } = useSelector(state => state.contacts);
+
+  useEffect(() => {
+    return () => {
+      dispatch(fetchContacts());
+    };
+  }, [dispatch]);
 
   const handleChange = ({ target: { value, name } }) => {
     if (name === 'name') {
