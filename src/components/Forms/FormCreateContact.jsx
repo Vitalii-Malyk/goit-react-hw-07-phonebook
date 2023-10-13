@@ -51,7 +51,7 @@ const FormCreateContact = () => {
     let nameArr = {
       id: newContact.id,
       name: newContact.name,
-      number: newContact.number,
+      phone: newContact.phone,
     };
     if (contacts) {
       if (

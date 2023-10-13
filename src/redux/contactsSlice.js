@@ -9,11 +9,9 @@ import {
 } from 'helper/functions/functions';
 
 const initialState = {
-  contacts: {
-    items: [],
-    isLoading: false,
-    error: null,
-  },
+  items: [],
+  isLoading: false,
+  error: null,
 };
 
 const fetchContacts = createAsyncThunk(
@@ -21,10 +19,9 @@ const fetchContacts = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const data = await getContacts();
-      console.log(data);
       return data;
     } catch (error) {
-      return rejectWithValue(error.responce.data);
+      return rejectWithValue(error);
     }
   }
 );
@@ -33,9 +30,17 @@ const addContact = createAsyncThunk('contacts/addContact', async () => {
   return await postContact();
 });
 
-const deleteContact = createAsyncThunk('contacts/deleteContact', async () => {
-  return await delContact();
-});
+const deleteContact = createAsyncThunk(
+  'contacts/deleteContact',
+  async (id, { rejectWithValue }) => {
+    try {
+      const data = await delContact(id);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
 
 const contactsSlice = createSlice({
   name: 'contacts',

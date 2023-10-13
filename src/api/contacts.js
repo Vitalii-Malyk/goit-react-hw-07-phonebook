@@ -29,13 +29,18 @@ export async function postContact() {
 export async function delContact(id) {
   try {
     const { data } = await axios.delete(`/contacts/${id}`);
-    return Notify.info(
-      { data },
-      {
+    if (data) {
+      Notify.info(`The contact with the name ${data.name} has been deleted`, {
         position: 'center-center',
         timeout: '1500',
-      }
-    );
+      });
+      return data;
+    } else {
+      return Notify.info(`Try again later`, {
+        position: 'center-center',
+        timeout: '1500',
+      });
+    }
   } catch (error) {
     console.error(error);
   }

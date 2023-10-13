@@ -23,7 +23,7 @@ const CreateListContact = () => {
   };
 
   const normalizedFilter = filter.toLocaleLowerCase();
-  const filtredContacts = contacts.contacts.filter(contact =>
+  const filtredContacts = contacts.items.filter(contact =>
     contact.name.toLowerCase().includes(normalizedFilter)
   );
 

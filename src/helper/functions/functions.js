@@ -7,6 +7,7 @@ const handleRejected = (state, { payload }) => {
 };
 const handlefulfilled = state => {
   state.isLoading = false;
+  state.error = null;
 };
 
 const handlefulfilledFetch = (state, { payload }) => {
