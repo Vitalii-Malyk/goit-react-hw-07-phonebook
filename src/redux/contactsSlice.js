@@ -21,6 +21,7 @@ const fetchContacts = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const data = await getContacts();
+      console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue(error.responce.data);
