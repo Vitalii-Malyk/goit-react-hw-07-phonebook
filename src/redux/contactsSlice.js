@@ -5,6 +5,7 @@ import {
   handleRejected,
   handlefulfilled,
   handlefulfilledAdd,
+  handlefulfilledDel,
   handlefulfilledFetch,
 } from 'helper/functions/functions';
 
@@ -49,14 +50,15 @@ const contactsSlice = createSlice({
     builder
       .addCase(fetchContacts.fulfilled, handlefulfilledFetch)
       .addCase(addContact.fulfilled, handlefulfilledAdd)
+      .addCase(deleteContact.fulfilled, handlefulfilledDel)
       .addMatcher(action => {
-        action.type.endsWith('/pending', handlePending);
+        action.type.endsWith('pending', handlePending);
       })
       .addMatcher(action => {
-        action.type.endsWith('/rejected', handleRejected);
+        action.type.endsWith('rejected', handleRejected);
       })
       .addMatcher(action => {
-        action.type.endsWith('/fulfilled', handlefulfilled);
+        action.type.endsWith('fulfilled', handlefulfilled);
       });
   },
 });
