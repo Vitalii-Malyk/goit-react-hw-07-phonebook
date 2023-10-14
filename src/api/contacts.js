@@ -11,16 +11,17 @@ export async function getContacts() {
   }
 }
 
-export async function postContact() {
+export async function postContact({ name, phone }) {
   try {
-    const { data } = await axios.post('/contacts');
-    return Notify.info(
-      { data },
-      {
-        position: 'center-center',
-        timeout: '1500',
-      }
-    );
+    const { data } = await axios.post('/contacts', {
+      name: name,
+      phone: phone,
+    });
+    Notify.info(`A contact named ${name} has been added to the contacts book`, {
+      position: 'center-center',
+      timeout: '1500',
+    });
+    return data;
   } catch (error) {
     console.error(error);
   }

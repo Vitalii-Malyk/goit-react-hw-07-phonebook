@@ -4,12 +4,14 @@ import FormCreateContact from 'components/Forms/FormCreateContact';
 import FilterContacts from 'components/FilterContacts/FilterContacts';
 
 import bgImage from 'helper/image/telefon-bgc.jpg';
+import { useSelector } from 'react-redux';
 
 const App = () => {
+  const { error } = useSelector(state => state.contacts);
+
   return (
     <div
       style={{
-        height: '100vh',
         display: 'flex',
         justifyContent: 'center',
         fontSize: 24,
@@ -26,6 +28,7 @@ const App = () => {
       <FormCreateContact />
       <h2>Contacts</h2>
       <FilterContacts />
+      {error && <b>{error}</b>}
       <CreateListContact />
     </div>
   );

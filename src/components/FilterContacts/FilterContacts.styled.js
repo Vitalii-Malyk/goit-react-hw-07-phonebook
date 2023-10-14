@@ -4,7 +4,7 @@ export const WrapElementStyle = styled('div')(() => {
   return {
     display: 'flex',
     flexDirection: 'column',
-    gap: '18px',
+    gap: '7px',
     width: 'fit-content',
   };
 });
@@ -15,5 +15,13 @@ export const InputElementStyle = styled('input')(() => {
     backgroundColor: 'antiquewhite',
     padding: '4px',
     borderRadius: '5px',
+  };
+});
+
+export const WrapMainElementStyle = styled('div')(() => {
+  return {
+    display: 'flex',
+    alignItems: 'end',
+    gap: '10px',
   };
 });

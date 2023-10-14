@@ -27,9 +27,17 @@ const fetchContacts = createAsyncThunk(
   }
 );
 
-const addContact = createAsyncThunk('contacts/addContact', async () => {
-  return await postContact();
-});
+const addContact = createAsyncThunk(
+  'contacts/addContact',
+  async ({ name, phone }, { rejectWithValue }) => {
+    try {
+      const data = await postContact({ name: name, phone: phone });
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
 
 const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
@@ -51,15 +59,9 @@ const contactsSlice = createSlice({
       .addCase(fetchContacts.fulfilled, handlefulfilledFetch)
       .addCase(addContact.fulfilled, handlefulfilledAdd)
       .addCase(deleteContact.fulfilled, handlefulfilledDel)
-      .addMatcher(action => {
-        action.type.endsWith('pending', handlePending);
-      })
-      .addMatcher(action => {
-        action.type.endsWith('rejected', handleRejected);
-      })
-      .addMatcher(action => {
-        action.type.endsWith('fulfilled', handlefulfilled);
-      });
+      .addMatcher(action => action.type.endsWith('pending'), handlePending)
+      .addMatcher(action => action.type.endsWith('rejected'), handleRejected)
+      .addMatcher(action => action.type.endsWith('fulfilled'), handlefulfilled);
   },
 });
 

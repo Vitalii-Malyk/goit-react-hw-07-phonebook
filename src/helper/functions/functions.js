@@ -16,7 +16,7 @@ const handlefulfilledFetch = (state, { payload }) => {
 };
 
 const handlefulfilledAdd = (state, { payload }) => {
-  state.items = payload;
+  state.items.push(payload);
 };
 
 const handlefulfilledDel = (state, { payload }) => {
