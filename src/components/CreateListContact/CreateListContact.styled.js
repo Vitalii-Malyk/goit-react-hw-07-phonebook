@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const ListElementStyle = styled('ul')(() => {
   return {
     listStyle: 'none',
+    marginTop: '5px',
     padding: 0,
     fontSize: '18px',
     display: 'flex',

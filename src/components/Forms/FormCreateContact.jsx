@@ -9,7 +9,7 @@ import {
   ButtonElementStyle,
 } from 'components/Forms/FormCreateContact.styled';
 
-import { addContact, fetchContacts } from 'redux/contactsSlice';
+import { addContact, fetchContacts } from 'redux/operations';
 
 const FormCreateContact = () => {
   const [name, setName] = useState('');

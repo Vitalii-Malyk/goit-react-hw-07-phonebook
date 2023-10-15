@@ -1,13 +1,14 @@
 import { nanoid } from 'nanoid';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   ListElementStyle,
   ItemElementStyle,
   ButtonElementStyle,
 } from 'components/CreateListContact/CreateListContact.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact, fetchContacts } from 'redux/contactsSlice';
-import { useEffect } from 'react';
+import { deleteContact, fetchContacts } from 'redux/operations';
+
 
 const CreateListContact = () => {
   const dispatch = useDispatch();

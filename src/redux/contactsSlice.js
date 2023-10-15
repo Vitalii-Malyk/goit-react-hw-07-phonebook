@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getContacts, delContact, postContact } from 'api/contacts';
+import { createSlice } from '@reduxjs/toolkit';
+
 import {
   handlePending,
   handleRejected,
@@ -8,48 +8,13 @@ import {
   handlefulfilledDel,
   handlefulfilledFetch,
 } from 'helper/functions/functions';
+import { addContact, deleteContact, fetchContacts } from './operations';
 
 const initialState = {
   items: [],
   isLoading: false,
   error: null,
 };
-
-const fetchContacts = createAsyncThunk(
-  'contacts/fetchContacts',
-  async (_, { rejectWithValue }) => {
-    try {
-      const data = await getContacts();
-      return data;
-    } catch (error) {
-      return rejectWithValue(error);
-    }
-  }
-);
-
-const addContact = createAsyncThunk(
-  'contacts/addContact',
-  async ({ name, phone }, { rejectWithValue }) => {
-    try {
-      const data = await postContact({ name: name, phone: phone });
-      return data;
-    } catch (error) {
-      return rejectWithValue(error);
-    }
-  }
-);
-
-const deleteContact = createAsyncThunk(
-  'contacts/deleteContact',
-  async (id, { rejectWithValue }) => {
-    try {
-      const data = await delContact(id);
-      return data;
-    } catch (error) {
-      return rejectWithValue(error);
-    }
-  }
-);
 
 const contactsSlice = createSlice({
   name: 'contacts',
@@ -66,4 +31,3 @@ const contactsSlice = createSlice({
 });
 
 export const contactsReducer = contactsSlice.reducer;
-export { fetchContacts, addContact, deleteContact };
