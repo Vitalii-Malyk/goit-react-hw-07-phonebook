@@ -17,10 +17,3 @@ export const WrapMainElementStyle = styled('div')(() => {
     backgroundPosition: 'center center',
   };
 });
-
-export const WrapElementStyle = styled('div')(() => {
-  return {
-    marginTop: '5px',
-    fontSize: '18px',
-  };
-});

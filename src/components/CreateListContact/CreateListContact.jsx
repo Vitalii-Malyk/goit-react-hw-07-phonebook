@@ -7,6 +7,7 @@ import {
   ListElementStyle,
   ItemElementStyle,
   ButtonElementStyle,
+  WrapElementStyle,
 } from 'components/CreateListContact/CreateListContact.styled';
 import { deleteContact, fetchContacts } from 'redux/operations';
 
@@ -47,7 +48,17 @@ const CreateListContact = () => {
       );
     });
   };
-  return <ListElementStyle>{createContactItem()}</ListElementStyle>;
+  return (
+    <ListElementStyle>
+      {contacts.items.length > 0 ? (
+        createContactItem()
+      ) : (
+        <WrapElementStyle>
+          The phone book is empty, add a contact
+        </WrapElementStyle>
+      )}
+    </ListElementStyle>
+  );
 };
 
 export default CreateListContact;

@@ -29,3 +29,10 @@ export const ButtonElementStyle = styled('button')(() => {
     background: 'transparent',
   };
 });
+
+export const WrapElementStyle = styled('div')(() => {
+  return {
+    marginTop: '5px',
+    fontSize: '18px',
+  };
+});

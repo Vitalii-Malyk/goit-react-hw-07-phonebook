@@ -4,10 +4,10 @@ import FormCreateContact from 'components/Forms/FormCreateContact';
 import FilterContacts from 'components/FilterContacts/FilterContacts';
 
 import { useSelector } from 'react-redux';
-import { WrapElementStyle, WrapMainElementStyle } from './App.styled';
+import { WrapMainElementStyle } from './App.styled';
 
 const App = () => {
-  const { error, items } = useSelector(state => state.contacts);
+  const { error } = useSelector(state => state.contacts);
 
   return (
     <WrapMainElementStyle>
@@ -16,13 +16,7 @@ const App = () => {
       <h2>Contacts</h2>
       <FilterContacts />
       {error && <b>{error}</b>}
-      {items ? (
-        <CreateListContact />
-      ) : (
-        <WrapElementStyle>
-          The phone book is empty, add a contact
-        </WrapElementStyle>
-      )}
+      <CreateListContact />
     </WrapMainElementStyle>
   );
 };
