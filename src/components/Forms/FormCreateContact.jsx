@@ -16,7 +16,7 @@ const FormCreateContact = () => {
   const [id, setId] = useState('');
   const [phone, setPhone] = useState('');
   const dispatch = useDispatch();
-  const { contacts } = useSelector(state => state.contacts);
+  const { items } = useSelector(state => state.contacts);
 
   useEffect(() => {
     return () => {
@@ -53,14 +53,21 @@ const FormCreateContact = () => {
       name: newContact.name,
       phone: newContact.phone,
     };
-    if (contacts) {
+    if (items) {
       if (
-        !contacts.find(
+        !items.find(
           nameArr =>
             nameArr.name.toLowerCase() === newContact.name.toLowerCase()
         )
       ) {
         dispatch(addContact(nameArr));
+        Notify.info(
+          `A contact named ${nameArr.name} has been added to the contacts book`,
+          {
+            position: 'center-center',
+            timeout: '1500',
+          }
+        );
       } else {
         Notify.info('The contact is already in the phone book!', {
           position: 'center-center',

@@ -1,6 +1,7 @@
 import { nanoid } from 'nanoid';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Notify } from 'notiflix';
 
 import {
   ListElementStyle,
@@ -8,7 +9,6 @@ import {
   ButtonElementStyle,
 } from 'components/CreateListContact/CreateListContact.styled';
 import { deleteContact, fetchContacts } from 'redux/operations';
-
 
 const CreateListContact = () => {
   const dispatch = useDispatch();
@@ -19,8 +19,12 @@ const CreateListContact = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  const deleteContactFromList = idContact => {
-    dispatch(deleteContact(idContact));
+  const deleteContactFromList = ({ id, name }) => {
+    dispatch(deleteContact(id));
+    Notify.info(`The contact with the name ${name} has been deleted`, {
+      position: 'center-center',
+      autoHideDelay: 1500,
+    });
   };
 
   const normalizedFilter = filter.toLocaleLowerCase();
@@ -35,7 +39,7 @@ const CreateListContact = () => {
           {`${contact.name} : ${contact.phone}`}
           <ButtonElementStyle
             data-id={contact.id}
-            onClick={() => deleteContactFromList(contact.id)}
+            onClick={() => deleteContactFromList(contact)}
           >
             x
           </ButtonElementStyle>

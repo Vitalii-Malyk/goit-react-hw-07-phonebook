@@ -17,10 +17,7 @@ export async function postContact({ name, phone }) {
       name: name,
       phone: phone,
     });
-    Notify.info(`A contact named ${name} has been added to the contacts book`, {
-      position: 'center-center',
-      timeout: '1500',
-    });
+
     return data;
   } catch (error) {
     console.error(error);
@@ -31,10 +28,6 @@ export async function delContact(id) {
   try {
     const { data } = await axios.delete(`/contacts/${id}`);
     if (data) {
-      Notify.info(`The contact with the name ${data.name} has been deleted`, {
-        position: 'center-center',
-        timeout: '1500',
-      });
       return data;
     } else {
       return Notify.info(`Try again later`, {
